@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Phone, Calendar, ArrowRight, User, Home as HomeIcon, Heart, FileText, Mail, Sun, Moon } from 'lucide-react';
+import { Menu, X, Phone, Calendar, User, Home as HomeIcon, Heart, FileText, Mail, Sun, Moon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const ThemeToggle = () => {
@@ -66,7 +66,8 @@ const Navbar = () => {
         scrolled ? 'bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-slate-800/50 py-4' : 'bg-transparent py-6'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 flex items-center">
+        {/* LOGO AMIA */}
         <Link to="/" className="flex items-center gap-2 group">
           <div className="w-10 h-10 bg-amia-teal rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-amia-teal/20 group-hover:scale-105 transition-transform">
             A
@@ -77,44 +78,48 @@ const Navbar = () => {
           </div>
         </Link>
 
-        {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={`text-sm font-medium transition-colors hover:text-amia-teal dark:hover:text-amia-teal ${
-                location.pathname === link.path ? 'text-amia-teal dark:text-amia-teal' : 'text-slate-600 dark:text-slate-300'
-              }`}
-            >
-              {link.name}
-            </Link>
-          ))}
-        </div>
+        {/* CONTAINER DA DIREITA (Links + Botões) */}
+        <div className="hidden lg:flex items-center gap-8 ml-auto">
+          {/* Links de Navegação */}
+          <div className="flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`text-sm font-medium transition-colors hover:text-amia-teal dark:hover:text-amia-teal ${
+                  location.pathname === link.path ? 'text-amia-teal dark:text-amia-teal' : 'text-slate-600 dark:text-slate-300'
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
 
-        <div className="hidden lg:flex items-center gap-4">
-          <ThemeToggle />
-          
-          {/* TO-DO: Reativar quando o backend de pacientes e agendamento estiver pronto */}
-          {/* <Link
-            to="/area-paciente"
-            className="px-5 py-2.5 text-amia-dark dark:text-white text-sm font-medium rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-2 border border-slate-200 dark:border-slate-700"
-          >
-            <User className="w-4 h-4" />
-            Área do Paciente
-          </Link>
-          <Link
-            to="/agendamento"
-            className="px-6 py-2.5 bg-amia-pink text-white text-sm font-medium rounded-full hover:bg-amia-pink/90 transition-colors shadow-lg shadow-amia-pink/20 flex items-center gap-2"
-          >
-            <Calendar className="w-4 h-4" />
-            Agendar
-          </Link>
-          */}
+          {/* Botões Extras e Tema */}
+          <div className="flex items-center gap-4 border-l border-slate-200 dark:border-slate-700 pl-8">
+            <ThemeToggle />
+            
+            {/* TO-DO: Reativar quando o backend de pacientes e agendamento estiver pronto */}
+            {/* <Link
+              to="/area-paciente"
+              className="px-5 py-2.5 text-amia-dark dark:text-white text-sm font-medium rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors flex items-center gap-2 border border-slate-200 dark:border-slate-700"
+            >
+              <User className="w-4 h-4" />
+              Área do Paciente
+            </Link>
+            <Link
+              to="/agendamento"
+              className="px-6 py-2.5 bg-amia-pink text-white text-sm font-medium rounded-full hover:bg-amia-pink/90 transition-colors shadow-lg shadow-amia-pink/20 flex items-center gap-2"
+            >
+              <Calendar className="w-4 h-4" />
+              Agendar
+            </Link>
+            */}
+          </div>
         </div>
 
         {/* Mobile Toggle */}
-        <div className="lg:hidden flex items-center gap-2">
+        <div className="lg:hidden flex items-center gap-2 ml-auto">
           <ThemeToggle />
           <button
             className="p-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors"
