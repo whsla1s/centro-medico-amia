@@ -1,0 +1,84 @@
+@import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* 
+  A fonte Altair não está disponível no Google Fonts. 
+  Se você tiver o arquivo da fonte (ex: altair.woff2), você pode carregá-lo aqui:
+*/
+@font-face {
+  font-family: 'Altair';
+  src: local('Altair'); /* Substitua por: url('/fonts/altair.woff2') format('woff2') */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-primary: "Altair", ui-sans-serif, system-ui, sans-serif;
+  --font-secondary: "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --color-amia-dark: #156d4c;
+  --color-amia-teal: #1ab799;
+  --color-amia-pink: #ef5ea0;
+  --color-amia-light: #eaeaea;
+}
+
+:root {
+  font-family: var(--font-sans);
+  background-color: #fafafa;
+  color: #156d4c;
+  scroll-behavior: smooth;
+}
+
+:root.dark {
+  --color-slate-900: #022c22; /* emerald-950 */
+  --color-slate-800: #064e3b; /* emerald-900 */
+  --color-slate-700: #065f46; /* emerald-800 */
+  --color-slate-600: #047857; /* emerald-700 */
+  --color-slate-500: #10b981; /* emerald-500 */
+  --color-slate-400: #34d399; /* emerald-400 */
+  --color-slate-300: #6ee7b7; /* emerald-300 */
+  --color-slate-200: #a7f3d0; /* emerald-200 */
+  --color-slate-100: #d1fae5; /* emerald-100 */
+  --color-slate-50:  #ecfdf5; /* emerald-50 */
+
+  background-color: var(--color-slate-900);
+  color: var(--color-slate-50);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-primary);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply bg-white dark:bg-slate-900 text-slate-900 dark:text-slate-50 transition-colors duration-300;
+}
+
+@layer utilities {
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent dark:bg-slate-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-300 dark:bg-slate-700 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-400 dark:bg-slate-600;
+}
